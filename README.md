@@ -38,7 +38,7 @@ dependencies: [
 ],
 targets: [
     .target(name: "YourApp", dependencies: [
-        .product(name: "KittenTTS", package: "KittenSDK"),
+        .product(name: "KittenTTS", package: "KittenTTS-swift"),
     ]),
 ]
 ```
