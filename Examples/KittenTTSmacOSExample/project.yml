@@ -1,0 +1,41 @@
+name: KittenTTSmacOSExample
+options:
+  bundleIdPrefix: com.kittenml
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "15"
+
+packages:
+  KittenSDK:
+    path: ../..
+
+targets:
+  KittenTTSmacOSExample:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - KittenTTSmacOSExample
+    resources: []
+    dependencies:
+      - package: KittenSDK
+        product: KittenTTS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kittenml.KittenTTSmacOSExample
+        SWIFT_VERSION: "5.9"
+        INFOPLIST_FILE: KittenTTSmacOSExample/Info.plist
+
+  KittenTTSmacOSExampleUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - KittenTTSmacOSExampleUITests
+    dependencies:
+      - target: KittenTTSmacOSExample
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kittenml.KittenTTSmacOSExampleUITests
+        SWIFT_VERSION: "5.9"
+        GENERATE_INFOPLIST_FILE: YES

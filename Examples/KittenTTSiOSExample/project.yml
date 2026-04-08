@@ -1,0 +1,41 @@
+name: KittenTTSiOSExample
+options:
+  bundleIdPrefix: com.kittenml
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "15"
+
+packages:
+  KittenSDK:
+    path: ../..
+
+targets:
+  KittenTTSiOSExample:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - KittenTTSiOSExample
+    resources: []
+    dependencies:
+      - package: KittenSDK
+        product: KittenTTS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kittenml.KittenTTSiOSExample
+        SWIFT_VERSION: "5.9"
+        INFOPLIST_FILE: KittenTTSiOSExample/Info.plist
+
+  KittenTTSiOSExampleUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - KittenTTSiOSExampleUITests
+    dependencies:
+      - target: KittenTTSiOSExample
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kittenml.KittenTTSiOSExampleUITests
+        SWIFT_VERSION: "5.9"
+        GENERATE_INFOPLIST_FILE: YES

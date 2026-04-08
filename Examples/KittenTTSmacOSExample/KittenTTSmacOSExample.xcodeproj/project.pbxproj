@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4223A19DD0B0674AF69E2586 /* KittenTTSMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E191F26EFF0A467762B5F /* KittenTTSMacApp.swift */; };
+		76C18D252A6C78C8F9DD1066 /* KittenTTS in Frameworks */ = {isa = PBXBuildFile; productRef = 3E661AB45A303CA554A858E6 /* KittenTTS */; };
+		8C6EFEF3BF0722069DB3DF1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4BAF7D92115FF8C982FE33 /* ContentView.swift */; };
+		C4B97CE2352E03BA5DDD8C3E /* KittenTTSMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCE4167DF173FB7B7BE005A /* KittenTTSMacUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A2E38705FA0F4F067626D03A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AB172B7B4F0230EA8EE4D9C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83EC1E672BFA0C1A7C8F6572;
+			remoteInfo = KittenTTSmacOSExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D4BAF7D92115FF8C982FE33 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		25B3A19140A9834FF23149F9 /* KittenSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = KittenSDK; path = ../..; sourceTree = SOURCE_ROOT; };
+		50878C989D934451B0691FC9 /* KittenTTSmacOSExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KittenTTSmacOSExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83CF86E8278AC58DFD29C291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		84251891E80BEC5400D891AE /* KittenTTSmacOSExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KittenTTSmacOSExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C82E191F26EFF0A467762B5F /* KittenTTSMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittenTTSMacApp.swift; sourceTree = "<group>"; };
+		FBCE4167DF173FB7B7BE005A /* KittenTTSMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittenTTSMacUITests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B612A3BDB0B66E9812BDFC9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C18D252A6C78C8F9DD1066 /* KittenTTS in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02DDDC1F510E526C817933A8 = {
+			isa = PBXGroup;
+			children = (
+				9DB351BC53231DFE21DBC001 /* KittenTTSmacOSExample */,
+				CB91F8A278293816C1A6E6F0 /* KittenTTSmacOSExampleUITests */,
+				375355803A0C1DF3693FB444 /* Packages */,
+				916D09B1E1052BAF7E27680C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		375355803A0C1DF3693FB444 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				25B3A19140A9834FF23149F9 /* KittenSDK */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		916D09B1E1052BAF7E27680C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50878C989D934451B0691FC9 /* KittenTTSmacOSExample.app */,
+				84251891E80BEC5400D891AE /* KittenTTSmacOSExampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9DB351BC53231DFE21DBC001 /* KittenTTSmacOSExample */ = {
+			isa = PBXGroup;
+			children = (
+				1D4BAF7D92115FF8C982FE33 /* ContentView.swift */,
+				83CF86E8278AC58DFD29C291 /* Info.plist */,
+				C82E191F26EFF0A467762B5F /* KittenTTSMacApp.swift */,
+			);
+			path = KittenTTSmacOSExample;
+			sourceTree = "<group>";
+		};
+		CB91F8A278293816C1A6E6F0 /* KittenTTSmacOSExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FBCE4167DF173FB7B7BE005A /* KittenTTSMacUITests.swift */,
+			);
+			path = KittenTTSmacOSExampleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AA3F79E1C4389EB4FEEE5E4 /* KittenTTSmacOSExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4F166F93B66F3BC5C4770C2 /* Build configuration list for PBXNativeTarget "KittenTTSmacOSExampleUITests" */;
+			buildPhases = (
+				EBA7B2A07CFF79F3F80BA7C8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				020B9D3AAB65BFA3A9980C56 /* PBXTargetDependency */,
+			);
+			name = KittenTTSmacOSExampleUITests;
+			packageProductDependencies = (
+			);
+			productName = KittenTTSmacOSExampleUITests;
+			productReference = 84251891E80BEC5400D891AE /* KittenTTSmacOSExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		83EC1E672BFA0C1A7C8F6572 /* KittenTTSmacOSExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C3875B2581572C9B4B4C15D /* Build configuration list for PBXNativeTarget "KittenTTSmacOSExample" */;
+			buildPhases = (
+				CAA6ECE8A3327ADCCD8B92C3 /* Sources */,
+				B612A3BDB0B66E9812BDFC9B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KittenTTSmacOSExample;
+			packageProductDependencies = (
+				3E661AB45A303CA554A858E6 /* KittenTTS */,
+			);
+			productName = KittenTTSmacOSExample;
+			productReference = 50878C989D934451B0691FC9 /* KittenTTSmacOSExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5AB172B7B4F0230EA8EE4D9C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1AA3F79E1C4389EB4FEEE5E4 = {
+						TestTargetID = 83EC1E672BFA0C1A7C8F6572;
+					};
+				};
+			};
+			buildConfigurationList = C4F32FBF064211F8BE2CC36C /* Build configuration list for PBXProject "KittenTTSmacOSExample" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 02DDDC1F510E526C817933A8;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B406CAD57FF67F352381B4BD /* XCLocalSwiftPackageReference "../.." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 916D09B1E1052BAF7E27680C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				83EC1E672BFA0C1A7C8F6572 /* KittenTTSmacOSExample */,
+				1AA3F79E1C4389EB4FEEE5E4 /* KittenTTSmacOSExampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CAA6ECE8A3327ADCCD8B92C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6EFEF3BF0722069DB3DF1F /* ContentView.swift in Sources */,
+				4223A19DD0B0674AF69E2586 /* KittenTTSMacApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBA7B2A07CFF79F3F80BA7C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B97CE2352E03BA5DDD8C3E /* KittenTTSMacUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		020B9D3AAB65BFA3A9980C56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83EC1E672BFA0C1A7C8F6572 /* KittenTTSmacOSExample */;
+			targetProxy = A2E38705FA0F4F067626D03A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		047A0F0773CB3F1E1E8DBB78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KittenTTSmacOSExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSmacOSExample;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		3C62BD16E2A56A563022A6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5DE8C27CA9C6B1C6949475CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		754737CAFB8C8CB58BEC1A63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSmacOSExampleUITests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+				TEST_TARGET_NAME = KittenTTSmacOSExample;
+			};
+			name = Debug;
+		};
+		A6995062622F121D8BDCB766 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KittenTTSmacOSExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSmacOSExample;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		B0B157F0B94DD27CCE51FEB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSmacOSExampleUITests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+				TEST_TARGET_NAME = KittenTTSmacOSExample;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7C3875B2581572C9B4B4C15D /* Build configuration list for PBXNativeTarget "KittenTTSmacOSExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				047A0F0773CB3F1E1E8DBB78 /* Debug */,
+				A6995062622F121D8BDCB766 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4F166F93B66F3BC5C4770C2 /* Build configuration list for PBXNativeTarget "KittenTTSmacOSExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754737CAFB8C8CB58BEC1A63 /* Debug */,
+				B0B157F0B94DD27CCE51FEB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C4F32FBF064211F8BE2CC36C /* Build configuration list for PBXProject "KittenTTSmacOSExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DE8C27CA9C6B1C6949475CE /* Debug */,
+				3C62BD16E2A56A563022A6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B406CAD57FF67F352381B4BD /* XCLocalSwiftPackageReference "../.." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3E661AB45A303CA554A858E6 /* KittenTTS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KittenTTS;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 5AB172B7B4F0230EA8EE4D9C /* Project object */;
+}

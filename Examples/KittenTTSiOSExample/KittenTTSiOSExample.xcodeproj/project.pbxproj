@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07CD29E2BA9CD25459D84229 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B733CD37C1F111B4578400 /* ContentView.swift */; };
+		4AA02BE9FBF6BEA09E3FA439 /* KittenTTS in Frameworks */ = {isa = PBXBuildFile; productRef = 2221ADC6890FBA83A9BDA962 /* KittenTTS */; };
+		86149EF12AB48898E5355ABE /* KittenTTSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F569459354AE31F79D40AB /* KittenTTSUITests.swift */; };
+		8C54113BF2C931559DBACEAB /* KittenTTSExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1010FB73374CD0234512BC6 /* KittenTTSExampleApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0BBDC45A28CEEC15841CE72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B493684A4C7AF80FED93D98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9EC2AC699F4D043B1D81B6EB;
+			remoteInfo = KittenTTSiOSExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		203C4294B9777EF36B3E7A18 /* KittenSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = KittenSDK; path = ../..; sourceTree = SOURCE_ROOT; };
+		4219F6203749598B73827DAE /* KittenTTSiOSExample.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KittenTTSiOSExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54B733CD37C1F111B4578400 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		98F569459354AE31F79D40AB /* KittenTTSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittenTTSUITests.swift; sourceTree = "<group>"; };
+		A33D51B9068A208DE9A9B60F /* KittenTTSiOSExampleUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KittenTTSiOSExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1010FB73374CD0234512BC6 /* KittenTTSExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittenTTSExampleApp.swift; sourceTree = "<group>"; };
+		FE681950B197F5369769AB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80AD921A79CC86C57EF7FD87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AA02BE9FBF6BEA09E3FA439 /* KittenTTS in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1854621B7AD3B455B59795F9 /* KittenTTSiOSExample */ = {
+			isa = PBXGroup;
+			children = (
+				54B733CD37C1F111B4578400 /* ContentView.swift */,
+				FE681950B197F5369769AB95 /* Info.plist */,
+				E1010FB73374CD0234512BC6 /* KittenTTSExampleApp.swift */,
+			);
+			path = KittenTTSiOSExample;
+			sourceTree = "<group>";
+		};
+		2C01612C0B8ADE34DF7B94CC = {
+			isa = PBXGroup;
+			children = (
+				1854621B7AD3B455B59795F9 /* KittenTTSiOSExample */,
+				DE8F8860445548D84BA08B5D /* KittenTTSiOSExampleUITests */,
+				E24B5F6F44E0777448BD059A /* Packages */,
+				73D3FFA836D1613D21B8581B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73D3FFA836D1613D21B8581B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4219F6203749598B73827DAE /* KittenTTSiOSExample.app */,
+				A33D51B9068A208DE9A9B60F /* KittenTTSiOSExampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE8F8860445548D84BA08B5D /* KittenTTSiOSExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				98F569459354AE31F79D40AB /* KittenTTSUITests.swift */,
+			);
+			path = KittenTTSiOSExampleUITests;
+			sourceTree = "<group>";
+		};
+		E24B5F6F44E0777448BD059A /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				203C4294B9777EF36B3E7A18 /* KittenSDK */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9EC2AC699F4D043B1D81B6EB /* KittenTTSiOSExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19EC59934B4877E32553F2AD /* Build configuration list for PBXNativeTarget "KittenTTSiOSExample" */;
+			buildPhases = (
+				BC43B7299B33DFFFA99CF39D /* Sources */,
+				80AD921A79CC86C57EF7FD87 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KittenTTSiOSExample;
+			packageProductDependencies = (
+				2221ADC6890FBA83A9BDA962 /* KittenTTS */,
+			);
+			productName = KittenTTSiOSExample;
+			productReference = 4219F6203749598B73827DAE /* KittenTTSiOSExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FE5883C76EC1F4E4F9EFA03E /* KittenTTSiOSExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C01328202C4FF6B12662304 /* Build configuration list for PBXNativeTarget "KittenTTSiOSExampleUITests" */;
+			buildPhases = (
+				5B1A608FABC33B94D4862563 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDD238791DC6B6693BD7826E /* PBXTargetDependency */,
+			);
+			name = KittenTTSiOSExampleUITests;
+			packageProductDependencies = (
+			);
+			productName = KittenTTSiOSExampleUITests;
+			productReference = A33D51B9068A208DE9A9B60F /* KittenTTSiOSExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8B493684A4C7AF80FED93D98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					FE5883C76EC1F4E4F9EFA03E = {
+						TestTargetID = 9EC2AC699F4D043B1D81B6EB;
+					};
+				};
+			};
+			buildConfigurationList = 9CC24224C33886B3DAC2956B /* Build configuration list for PBXProject "KittenTTSiOSExample" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 2C01612C0B8ADE34DF7B94CC;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D122299639CD39101D44BB34 /* XCLocalSwiftPackageReference "../.." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 73D3FFA836D1613D21B8581B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9EC2AC699F4D043B1D81B6EB /* KittenTTSiOSExample */,
+				FE5883C76EC1F4E4F9EFA03E /* KittenTTSiOSExampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5B1A608FABC33B94D4862563 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86149EF12AB48898E5355ABE /* KittenTTSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC43B7299B33DFFFA99CF39D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07CD29E2BA9CD25459D84229 /* ContentView.swift in Sources */,
+				8C54113BF2C931559DBACEAB /* KittenTTSExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDD238791DC6B6693BD7826E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9EC2AC699F4D043B1D81B6EB /* KittenTTSiOSExample */;
+			targetProxy = A0BBDC45A28CEEC15841CE72 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		170A1A780226C1F90E76D026 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		24DE2E2F2F6331143192A2B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSiOSExampleUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KittenTTSiOSExample;
+			};
+			name = Release;
+		};
+		5A851C721EAFFC8E15971BBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = KittenTTSiOSExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSiOSExample;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		853BBD91680A6EF7F107E44B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSiOSExampleUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KittenTTSiOSExample;
+			};
+			name = Debug;
+		};
+		95557BD6C7C03BB41B4FE0B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = KittenTTSiOSExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kittenml.KittenTTSiOSExample;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F57716E01965A29179E49744 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		19EC59934B4877E32553F2AD /* Build configuration list for PBXNativeTarget "KittenTTSiOSExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A851C721EAFFC8E15971BBA /* Debug */,
+				95557BD6C7C03BB41B4FE0B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8C01328202C4FF6B12662304 /* Build configuration list for PBXNativeTarget "KittenTTSiOSExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				853BBD91680A6EF7F107E44B /* Debug */,
+				24DE2E2F2F6331143192A2B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9CC24224C33886B3DAC2956B /* Build configuration list for PBXProject "KittenTTSiOSExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				170A1A780226C1F90E76D026 /* Debug */,
+				F57716E01965A29179E49744 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		D122299639CD39101D44BB34 /* XCLocalSwiftPackageReference "../.." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2221ADC6890FBA83A9BDA962 /* KittenTTS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KittenTTS;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8B493684A4C7AF80FED93D98 /* Project object */;
+}
