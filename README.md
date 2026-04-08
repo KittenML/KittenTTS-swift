@@ -34,7 +34,7 @@ Add the following to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/KittenML/KittenSDK", from: "1.0.0"),
+    .package(url: "https://github.com/KittenML/KittenTTS-swift", from: "1.0.0"),
 ],
 targets: [
     .target(name: "YourApp", dependencies: [
