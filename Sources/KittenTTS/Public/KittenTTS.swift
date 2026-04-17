@@ -123,16 +123,23 @@ public actor KittenTTS {
         let selectedSpeed = min(max(speed ?? config.speed, 0.5), 2.0)
         let effectiveSpeed = selectedSpeed * config.model.speedPrior(for: selectedVoice)
 
-        let samples = try await Task.detached(priority: .userInitiated) { [engine] in
+        let output = try await Task.detached(priority: .userInitiated) { [engine] in
             try engine.generate(text: trimmed, voice: selectedVoice, speed: selectedSpeed)
         }.value
 
+        let wordTimings = TimestampJoiner.joinTimestamps(
+            inputText: trimmed,
+            phonemes: output.phonemes,
+            durations: output.durations
+        )
+
         return KittenTTSResult(
-            samples: samples,
+            samples: output.samples,
             sampleRate: KittenTTSConfig.outputSampleRate,
             voice: selectedVoice,
             effectiveSpeed: effectiveSpeed,
-            inputText: trimmed
+            inputText: trimmed,
+            wordTimings: wordTimings
         )
     }
 

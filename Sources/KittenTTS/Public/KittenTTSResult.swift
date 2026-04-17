@@ -40,6 +40,13 @@ public struct KittenTTSResult: Sendable {
     /// The original input text that was synthesised.
     public let inputText: String
 
+    /// Per-word timestamps derived from the model's predicted phoneme durations.
+    ///
+    /// Each entry maps a word in ``inputText`` to its start and end time in the
+    /// generated audio. Empty when duration data is unavailable (e.g. for
+    /// multi-chunk texts that exceed ``KittenTTSConfig/maxTokensPerChunk``).
+    public let wordTimings: [KittenWordTiming]
+
     // MARK: - Export
 
     /// Encode the audio as a standard 16-bit PCM RIFF WAV file.
