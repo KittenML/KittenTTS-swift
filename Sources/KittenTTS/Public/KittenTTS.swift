@@ -136,6 +136,68 @@ public actor KittenTTS {
         )
     }
 
+    /// Synthesise speech for the given text, yielding results sentence by sentence.
+    ///
+    /// This is the streaming counterpart of ``generate(_:voice:speed:)``. Instead of
+    /// waiting for the entire text to finish, it splits the input into sentences and
+    /// yields a ``KittenTTSResult`` for each one as soon as it is ready.
+    ///
+    /// Use this when you want to start audio playback immediately while the rest of
+    /// the text is still being synthesised:
+    ///
+    /// ```swift
+    /// for try await chunk in tts.generateStreaming("Long article text...") {
+    ///     audioEngine.scheduleBuffer(chunk.samples)
+    /// }
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - text: The English text to synthesise. Must not be empty.
+    ///   - voice: The voice to use. Defaults to ``KittenTTSConfig/defaultVoice``.
+    ///   - speed: Speed multiplier (0.5-2.0). Defaults to ``KittenTTSConfig/speed``.
+    /// - Returns: An `AsyncThrowingStream` of ``KittenTTSResult`` values, one per sentence.
+    public func generateStreaming(
+        _ text: String,
+        voice: KittenVoice? = nil,
+        speed: Float? = nil
+    ) -> AsyncThrowingStream<KittenTTSResult, Error> {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let selectedVoice = voice ?? config.defaultVoice
+        let selectedSpeed = min(max(speed ?? config.speed, 0.5), 2.0)
+
+        return AsyncThrowingStream { continuation in
+            Task { [engine, config] in
+                guard !trimmed.isEmpty else {
+                    continuation.finish(throwing: KittenTTSError.emptyInput)
+                    return
+                }
+
+                let sentences = SentenceSplitter.split(trimmed)
+                let effectiveSpeed = selectedSpeed * config.model.speedPrior(for: selectedVoice)
+
+                do {
+                    for sentence in sentences {
+                        let samples = try await Task.detached(priority: .userInitiated) {
+                            try engine.generate(text: sentence, voice: selectedVoice, speed: selectedSpeed)
+                        }.value
+
+                        let result = KittenTTSResult(
+                            samples: samples,
+                            sampleRate: KittenTTSConfig.outputSampleRate,
+                            voice: selectedVoice,
+                            effectiveSpeed: effectiveSpeed,
+                            inputText: sentence
+                        )
+                        continuation.yield(result)
+                    }
+                    continuation.finish()
+                } catch {
+                    continuation.finish(throwing: error)
+                }
+            }
+        }
+    }
+
     /// Synthesise and play speech for the given text.
     ///
     /// This is a convenience wrapper that calls ``generate(_:voice:speed:)`` and then
@@ -144,7 +206,7 @@ public actor KittenTTS {
     /// - Parameters:
     ///   - text: The English text to synthesise. Must not be empty.
     ///   - voice: The voice to use. Defaults to ``KittenTTSConfig/defaultVoice``.
-    ///   - speed: Speed multiplier (0.5–2.0). Defaults to ``KittenTTSConfig/speed``.
+    ///   - speed: Speed multiplier (0.5-2.0). Defaults to ``KittenTTSConfig/speed``.
     /// - Returns: The generated ``KittenTTSResult``.
     /// - Throws: ``KittenTTSError`` on synthesis or playback failure.
     @discardableResult
