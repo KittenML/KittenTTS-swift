@@ -7,12 +7,22 @@ import OnnxRuntimeBindings
 /// `text → TextPreprocessor → Phonemizer → TextCleaner → ONNX → Float32 PCM`
 final class TTSEngine {
 
+    /// Internal result returned by ``generate(text:voice:speed:)``.
+    struct Output {
+        let samples: [Float]
+        /// Predicted frame count per input token (from the ONNX ``duration`` output).
+        let durations: [Int64]
+        /// The IPA phoneme string produced by the phonemizer (spaces between words).
+        let phonemes: String
+    }
+
     // MARK: - Private state
 
     private let session: ORTSession
     private let ortEnv: ORTEnv         // must outlive session
     private let voices: [String: VoiceEmbedding]
-    private let outputName: String
+    private let waveformOutputName: String
+    private let durationOutputName: String?
     private let config: KittenTTSConfig
     private let phonemizer: any KittenPhonemizerProtocol
 
@@ -32,12 +42,16 @@ final class TTSEngine {
         try opts.setIntraOpNumThreads(Int32(config.ortNumThreads))
 
         let session = try ORTSession(env: env, modelPath: modelURL.path, sessionOptions: opts)
-        let outName = (try? session.outputNames())?.first ?? "output"
+        let outputNames = (try? session.outputNames()) ?? []
+        // Match by explicit name — outputNames is a Set so ordering is not guaranteed.
+        let waveformName = outputNames.contains("waveform") ? "waveform" : (outputNames.first ?? "output")
+        let durationName: String? = outputNames.contains("duration") ? "duration" : nil
         let voices  = try NPZLoader.load(contentsOf: voicesURL)
 
         self.ortEnv     = env
         self.session    = session
-        self.outputName = outName
+        self.waveformOutputName = waveformName
+        self.durationOutputName = durationName
         self.voices     = voices
     }
 
@@ -52,9 +66,9 @@ final class TTSEngine {
     ///   - text: Normalised input text (already preprocessed).
     ///   - voice: The ``KittenVoice`` to use.
     ///   - speed: Effective speed multiplier (already pre-multiplied with voice's default).
-    /// - Returns: Float32 PCM samples at ``KittenTTSConfig/outputSampleRate`` Hz.
+    /// - Returns: An ``Output`` containing PCM samples, per-token durations, and the phoneme string.
     /// - Throws: ``KittenTTSError`` on inference failure or missing voice data.
-    func generate(text: String, voice: KittenVoice, speed: Float) throws -> [Float] {
+    func generate(text: String, voice: KittenVoice, speed: Float) throws -> Output {
         guard let embedding = voices[voice.rawValue] else {
             throw KittenTTSError.noVoiceEmbedding(voice)
         }
@@ -66,18 +80,29 @@ final class TTSEngine {
         let effectiveSpeed = speed * config.model.speedPrior(for: voice)
 
         var allSamples: [Float] = []
+        var allDurations: [Int64] = []
+        let isSingleChunk = chunks.count == 1
+
         for chunk in chunks {
-            let samples = try runChunk(
+            let result = try runChunk(
                 tokens: chunk,
                 embedding: embedding,
                 phonemeLength: phonemes.count,
                 speed: effectiveSpeed
             )
-            allSamples.append(contentsOf: samples)
+            allSamples.append(contentsOf: result.samples)
+
+            if isSingleChunk {
+                // Keep the full duration array (including start/end tokens)
+                // so join_timestamps can use the start-token offset.
+                allDurations = result.durations
+            }
+            // For multi-chunk texts, per-token durations can't be reliably
+            // mapped back to words across chunk boundaries. Leave empty.
         }
 
         guard !allSamples.isEmpty else { throw KittenTTSError.emptyOutput }
-        return allSamples
+        return Output(samples: allSamples, durations: allDurations, phonemes: phonemes)
     }
 
     // MARK: - Private
@@ -85,20 +110,26 @@ final class TTSEngine {
     private func runChunk(tokens: [Int64],
                           embedding: VoiceEmbedding,
                           phonemeLength: Int,
-                          speed: Float) throws -> [Float] {
+                          speed: Float) throws -> (samples: [Float], durations: [Int64]) {
         let styleVec = embedding.slice(forTextLength: phonemeLength)
 
         let tokenTensor = try ortTensor(int64: tokens, shape: [1, tokens.count])
         let styleTensor = try ortTensor(float: styleVec, shape: [1, styleVec.count])
         let speedTensor = try ortTensor(float: [speed], shape: [1])
 
+        var requestedOutputs: Set<String> = [waveformOutputName]
+        if let durName = durationOutputName {
+            requestedOutputs.insert(durName)
+        }
+
         let results = try session.run(
             withInputs: ["input_ids": tokenTensor, "style": styleTensor, "speed": speedTensor],
-            outputNames: Set([outputName]),
+            outputNames: requestedOutputs,
             runOptions: nil
         )
 
-        guard let outValue = results[outputName] else { throw KittenTTSError.emptyOutput }
+        // Extract waveform samples.
+        guard let outValue = results[waveformOutputName] else { throw KittenTTSError.emptyOutput }
 
         let outData = try outValue.tensorData() as Data
         let count   = outData.count / MemoryLayout<Float>.stride
@@ -112,7 +143,19 @@ final class TTSEngine {
         // KittenTTS appends ~0.2 s of silence at the end of each chunk; trim it.
         let trim = min(5_000, samples.count)
         samples.removeLast(trim)
-        return samples
+
+        // Extract per-token durations (if the model provides them).
+        var durations: [Int64] = []
+        if let durName = durationOutputName, let durValue = results[durName] {
+            let durData = try durValue.tensorData() as Data
+            let durCount = durData.count / MemoryLayout<Int64>.stride
+            durations = [Int64](unsafeUninitializedCapacity: durCount) { buf, n in
+                durData.withUnsafeBytes { src in _ = src.copyBytes(to: buf) }
+                n = durCount
+            }
+        }
+
+        return (samples, durations)
     }
 
     private func splitIntoChunks(_ tokens: [Int64]) -> [[Int64]] {
