@@ -184,16 +184,22 @@ public actor KittenTTS {
 
                 do {
                     for sentence in sentences {
-                        let samples = try await Task.detached(priority: .userInitiated) {
+                        let output = try await Task.detached(priority: .userInitiated) {
                             try engine.generate(text: sentence, voice: selectedVoice, speed: selectedSpeed)
                         }.value
+                        let wordTimings = TimestampJoiner.joinTimestamps(
+                            inputText: sentence,
+                            phonemes: output.phonemes,
+                            durations: output.durations
+                        )
 
                         let result = KittenTTSResult(
-                            samples: samples,
+                            samples: output.samples,
                             sampleRate: KittenTTSConfig.outputSampleRate,
                             voice: selectedVoice,
                             effectiveSpeed: effectiveSpeed,
-                            inputText: sentence
+                            inputText: sentence,
+                            wordTimings: wordTimings
                         )
                         continuation.yield(result)
                     }

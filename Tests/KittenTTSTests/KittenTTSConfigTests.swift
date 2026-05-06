@@ -9,6 +9,7 @@ final class KittenTTSConfigTests: XCTestCase {
         XCTAssertEqual(config.defaultVoice, .bella)
         XCTAssertEqual(config.speed,        1.0, accuracy: 0.001)
         XCTAssertNil(config.storageDirectory)
+        XCTAssertNil(config.modelFiles)
         XCTAssertEqual(config.ortNumThreads,     4)
         XCTAssertEqual(config.maxTokensPerChunk, 400)
     }
@@ -44,5 +45,16 @@ final class KittenTTSConfigTests: XCTestCase {
         let custom = URL(fileURLWithPath: "/tmp/test-models")
         let config = KittenTTSConfig(storageDirectory: custom)
         XCTAssertTrue(config.resolvedStorageDirectory.path.hasPrefix("/tmp/test-models"))
+    }
+
+    func testModelFilesAreRetained() {
+        let files = KittenTTSModelFiles(
+            onnxURL: URL(fileURLWithPath: "/tmp/model.onnx"),
+            voicesURL: URL(fileURLWithPath: "/tmp/voices.npz")
+        )
+        let config = KittenTTSConfig(model: .nanoInt8, modelFiles: files)
+
+        XCTAssertEqual(config.model, .nanoInt8)
+        XCTAssertEqual(config.modelFiles, files)
     }
 }
