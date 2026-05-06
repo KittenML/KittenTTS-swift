@@ -11,7 +11,6 @@ try await tts.speak("Good morning!")
 ## Features
 
 - **Fully on-device** — no network calls after setup
-- **Bundled offline assets** — ship model and phonemizer files with your app
 - **4 model sizes** — nano (fp32/int8), micro, and mini
 - **8 voices** — Bella, Jasper, Luna, Bruno, Rosie, Hugo, Kiki, Leo
 - **Simple async API** — one line to generate or play speech
@@ -107,58 +106,12 @@ let config = KittenTTSConfig(
     defaultVoice: .luna,    // default voice
     speed: 1.1,             // global speed multiplier (0.5–2.0)
     storageDirectory: nil,  // nil = Application Support/KittenTTS/
-    modelFiles: nil,        // set for bundled/offline model assets
+    modelFiles: nil,
     ortNumThreads: 4,       // ONNX intra-op thread count
     maxTokensPerChunk: 400  // max tokens per inference chunk
 )
 let tts = try await KittenTTS(config)
 ```
-
-## Bundled Offline Assets
-
-Use bundled assets when the app must work without a first-run network download.
-This matches the React Native SDK's `bundle-assets` output:
-
-```text
-assets/kittentts/
-  manifest.json
-  kitten-tts-nano-0.8-int8/kitten_tts_nano_v0_8.onnx
-  kitten-tts-nano-0.8-int8/voices.npz
-  CEPhonemizer/en_rules.txt
-  CEPhonemizer/en_list.txt
-```
-
-If the `kittentts` directory is included in the app bundle, create a config
-directly from `manifest.json`:
-
-```swift
-let config = try KittenTTSBundledAssets.configFromBundle(
-    assetRoot: "kittentts",
-    model: .nanoInt8
-)
-let tts = try await KittenTTS(config)
-```
-
-You can also wire file URLs explicitly:
-
-```swift
-let assetRoot = Bundle.main.resourceURL!.appendingPathComponent("kittentts")
-let config = KittenTTSConfig(
-    model: .nanoInt8,
-    phonemizer: .custom(EPhonemizer(
-        rulesFileURL: assetRoot.appendingPathComponent("CEPhonemizer/en_rules.txt"),
-        listFileURL: assetRoot.appendingPathComponent("CEPhonemizer/en_list.txt")
-    )),
-    modelFiles: KittenTTSModelFiles(
-        onnxURL: assetRoot.appendingPathComponent("kitten-tts-nano-0.8-int8/kitten_tts_nano_v0_8.onnx"),
-        voicesURL: assetRoot.appendingPathComponent("kitten-tts-nano-0.8-int8/voices.npz")
-    )
-)
-let tts = try await KittenTTS(config)
-```
-
-When `modelFiles` and bundled `EPhonemizer` file URLs are provided, `KittenTTS`
-does not download model or phonemizer assets.
 
 ## Models
 
@@ -193,16 +146,6 @@ You can override the download URLs to point to your own hosted copies:
 let phonemizer = EPhonemizer(
     rulesURL: URL(string: "https://example.com/en_rules")!,
     listURL:  URL(string: "https://example.com/en_list")!
-)
-let config = KittenTTSConfig(phonemizer: .custom(phonemizer))
-```
-
-Or provide local files bundled with the app:
-
-```swift
-let phonemizer = EPhonemizer(
-    rulesFileURL: assetRoot.appendingPathComponent("CEPhonemizer/en_rules.txt"),
-    listFileURL: assetRoot.appendingPathComponent("CEPhonemizer/en_list.txt")
 )
 let config = KittenTTSConfig(phonemizer: .custom(phonemizer))
 ```
@@ -285,7 +228,7 @@ The `Examples/` directory contains two complete SwiftUI apps:
 
 - **`KittenTTSiOSExample/`** — iOS 17+ app (iPhone / iPad)
 - **`KittenTTSmacOSExample/`** — macOS 14+ app (native Mac window)
-- **`KittenTTSBundledAssetsExample/`** — macOS bundled/offline assets example
+- **`KittenTTSmacOSBundledExample/`** — macOS bundled example
 
 To open an example, regenerate the Xcode project with [XcodeGen](https://github.com/yonaskolb/XcodeGen):
 
@@ -295,19 +238,8 @@ xcodegen generate
 open KittenTTSiOSExample.xcodeproj
 ```
 
-To run the bundled-assets example:
-
-```bash
-cd Examples/KittenTTSBundledAssetsExample
-swift run KittenTTSBundledAssetsExample
-```
-
-To package it as a local `.app`:
-
-```bash
-./make-macos-app.sh
-open build/KittenTTSBundledAssetsExample.app
-```
+For the bundled macOS example, see
+[`Examples/KittenTTSmacOSBundledExample/README.md`](Examples/KittenTTSmacOSBundledExample/README.md).
 
 ## Architecture
 

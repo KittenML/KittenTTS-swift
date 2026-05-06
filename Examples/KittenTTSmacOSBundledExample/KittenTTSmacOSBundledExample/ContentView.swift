@@ -1,17 +1,6 @@
 import SwiftUI
 import KittenTTS
 
-@main
-struct KittenTTSBundledAssetsApp: App {
-    var body: some Scene {
-        WindowGroup("KittenTTS Bundled Assets") {
-            ContentView()
-                .frame(minWidth: 640, minHeight: 520)
-        }
-        .windowResizability(.contentMinSize)
-    }
-}
-
 struct ContentView: View {
     @State private var viewModel = ViewModel()
 
@@ -38,6 +27,7 @@ struct ContentView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("KittenTTS Bundled Assets")
                     .font(.title2.bold())
+                    .accessibilityIdentifier("app_title")
                 Text(viewModel.assetsURL.path)
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -69,7 +59,7 @@ struct ContentView: View {
                 Label("No bundled assets found", systemImage: "exclamationmark.triangle.fill")
                     .font(.subheadline.bold())
                     .foregroundStyle(.orange)
-                Text("Run this in `Examples/KittenTTSBundledAssetsExample`:")
+                Text("Run this in `Examples/KittenTTSmacOSBundledExample`:")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Text("npx @kittentts/react-native bundle-assets --models nano-int8 --out assets/kittentts")
@@ -157,6 +147,7 @@ struct ContentView: View {
             }
             .keyboardShortcut(.return, modifiers: .command)
             .disabled(!viewModel.canGenerate)
+            .accessibilityIdentifier("generate_button")
 
             Button {
                 Task { await viewModel.speak() }
@@ -164,6 +155,13 @@ struct ContentView: View {
                 Label("Speak", systemImage: "speaker.wave.2")
             }
             .disabled(!viewModel.canGenerate)
+
+            Button {
+                NSWorkspace.shared.activateFileViewerSelecting([viewModel.outputURL])
+            } label: {
+                Label("Show in Downloads", systemImage: "arrow.down.doc")
+            }
+            .disabled(viewModel.lastResult == nil)
 
             Spacer()
 
@@ -200,6 +198,7 @@ struct ContentView: View {
                     .font(.caption.bold())
                     .foregroundStyle(.green)
             }
+            .accessibilityIdentifier("result_groupbox")
         }
     }
 }
@@ -225,7 +224,8 @@ final class ViewModel {
     var lastResult: KittenTTSResult?
 
     let assetsURL = AssetLocator.resolveAssetsURL()
-    let outputURL = URL(fileURLWithPath: "bundled-output.wav")
+    let outputURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0]
+        .appendingPathComponent("bundled-output.wav")
 
     var availableModels: [KittenModel] {
         manifest?.availableModels ?? []
@@ -312,6 +312,16 @@ enum AssetLocator {
             .appendingPathComponent("kittentts", isDirectory: true),
            FileManager.default.fileExists(atPath: bundledURL.appendingPathComponent("manifest.json").path) {
             return bundledURL
+        }
+
+        let sourceURL = URL(fileURLWithPath: #filePath)
+        var current = sourceURL.deletingLastPathComponent()
+        while current.path != "/" {
+            let candidate = current.appendingPathComponent("assets/kittentts", isDirectory: true)
+            if FileManager.default.fileExists(atPath: candidate.appendingPathComponent("manifest.json").path) {
+                return candidate
+            }
+            current.deleteLastPathComponent()
         }
 
         return URL(fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true)

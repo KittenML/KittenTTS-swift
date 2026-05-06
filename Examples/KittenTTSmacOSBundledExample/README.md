@@ -1,4 +1,4 @@
-# KittenTTS Bundled Assets macOS Example
+# KittenTTS macOS Bundled Example
 
 SwiftUI macOS example for loading KittenTTS from pre-bundled offline assets.
 
@@ -20,22 +20,11 @@ npx @kittentts/react-native bundle-assets --models nano-int8 --out assets/kitten
 ```
 
 Then copy or symlink the generated `assets/kittentts` directory into this
-example and run:
+example and open the Xcode project:
 
 ```bash
-swift run KittenTTSBundledAssetsExample
+open KittenTTSmacOSBundledExample.xcodeproj
 ```
 
 The app loads the manifest, lets you choose a bundled model and voice, and can
-play speech or write `bundled-output.wav`.
-
-To build a standalone local `.app` bundle:
-
-```bash
-./make-macos-app.sh
-open build/KittenTTSBundledAssetsExample.app
-```
-
-If `assets/kittentts` exists, the script copies it into
-`Contents/Resources/kittentts` so the app uses bundle resources instead of the
-working directory.
+play speech or write `~/Downloads/bundled-output.wav`.
