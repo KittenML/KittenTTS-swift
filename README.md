@@ -285,6 +285,7 @@ The `Examples/` directory contains two complete SwiftUI apps:
 
 - **`KittenTTSiOSExample/`** — iOS 17+ app (iPhone / iPad)
 - **`KittenTTSmacOSExample/`** — macOS 14+ app (native Mac window)
+- **`KittenTTSBundledAssetsExample/`** — command-line bundled/offline assets example
 
 To open an example, regenerate the Xcode project with [XcodeGen](https://github.com/yonaskolb/XcodeGen):
 
@@ -292,6 +293,13 @@ To open an example, regenerate the Xcode project with [XcodeGen](https://github.
 cd Examples/KittenTTSiOSExample
 xcodegen generate
 open KittenTTSiOSExample.xcodeproj
+```
+
+To run the bundled-assets example:
+
+```bash
+cd Examples/KittenTTSBundledAssetsExample
+swift run KittenTTSBundledAssetsExample --assets assets/kittentts --generate
 ```
 
 ## Architecture
