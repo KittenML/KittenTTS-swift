@@ -7,8 +7,9 @@ import CEPhonemizer
 /// produce accurate IPA for any English input.
 /// Works on iOS, macOS, and Simulators with zero external dependencies.
 ///
-/// Data files are downloaded on first use and cached on disk. You can
-/// override the download URLs to point to your own hosted copies:
+/// Data files are downloaded on first use and cached on disk by default. You can
+/// override the download URLs to point to your own hosted copies, or provide
+/// local data files when bundling assets with your app:
 ///
 /// ```swift
 /// let phonemizer = EPhonemizer(
@@ -16,6 +17,13 @@ import CEPhonemizer
 ///     listURL: myCustomListURL
 /// )
 /// let config = KittenTTSConfig(phonemizer: .custom(phonemizer))
+/// ```
+///
+/// ```swift
+/// let phonemizer = EPhonemizer(
+///     rulesFileURL: Bundle.main.url(forResource: "en_rules", withExtension: nil)!,
+///     listFileURL: Bundle.main.url(forResource: "en_list", withExtension: nil)!
+/// )
 /// ```
 ///
 /// This is the default (`.builtin`) phonemizer for ``KittenTTS``.
@@ -37,30 +45,40 @@ public final class EPhonemizer: KittenPhonemizerProtocol, @unchecked Sendable {
 
     private let rulesDownloadURL: URL
     private let listDownloadURL: URL
+    private let rulesFileURL: URL?
+    private let listFileURL: URL?
 
     private let lock = NSLock()
     private var handle: PhonemizerHandle?
 
     // MARK: - Init
 
-    /// Create an EPhonemizer with optional custom download URLs.
+    /// Create an EPhonemizer with optional custom download URLs or local files.
     ///
     /// The phonemizer does **not** load data at init time. Call
     /// ``downloadIfNeeded(to:progressHandler:)`` (done automatically by
-    /// ``KittenTTS``) to fetch the data files, then ``phonemize(_:)`` will
-    /// lazily initialise the C++ engine on first call.
+    /// ``KittenTTS``) to fetch or validate the data files, then
+    /// ``phonemize(_:)`` will lazily initialise the C++ engine on first call.
     ///
     /// - Parameters:
     ///   - rulesURL: URL to download `en_rules` from. Defaults to
     ///     ``defaultRulesURL``.
     ///   - listURL: URL to download `en_list` from. Defaults to
     ///     ``defaultListURL``.
+    ///   - rulesFileURL: Local `en_rules` file. When provided with
+    ///     `listFileURL`, no phonemizer data is downloaded.
+    ///   - listFileURL: Local `en_list` file. When provided with
+    ///     `rulesFileURL`, no phonemizer data is downloaded.
     public init(
         rulesURL: URL? = nil,
-        listURL: URL? = nil
+        listURL: URL? = nil,
+        rulesFileURL: URL? = nil,
+        listFileURL: URL? = nil
     ) {
         self.rulesDownloadURL = rulesURL ?? Self.defaultRulesURL
         self.listDownloadURL  = listURL  ?? Self.defaultListURL
+        self.rulesFileURL = rulesFileURL
+        self.listFileURL = listFileURL
     }
 
     deinit {
@@ -77,6 +95,11 @@ public final class EPhonemizer: KittenPhonemizerProtocol, @unchecked Sendable {
         to storageDirectory: URL,
         progressHandler: ((Double) -> Void)?
     ) async throws {
+        if rulesFileURL != nil || listFileURL != nil {
+            try loadBundledFiles(progressHandler: progressHandler)
+            return
+        }
+
         let dir = storageDirectory.appendingPathComponent("EPhonemizer", isDirectory: true)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
 
@@ -87,10 +110,7 @@ public final class EPhonemizer: KittenPhonemizerProtocol, @unchecked Sendable {
         let listExists  = FileManager.default.fileExists(atPath: listDst.path)
 
         if rulesExists && listExists {
-            lock.lock()
-            cachedRulesPath = rulesDst.path
-            cachedListPath  = listDst.path
-            lock.unlock()
+            setCachedPaths(rulesPath: rulesDst.path, listPath: listDst.path)
             progressHandler?(1.0)
             return
         }
@@ -109,11 +129,33 @@ public final class EPhonemizer: KittenPhonemizerProtocol, @unchecked Sendable {
             }
         }
 
-        lock.lock()
-        cachedRulesPath = rulesDst.path
-        cachedListPath  = listDst.path
-        lock.unlock()
+        setCachedPaths(rulesPath: rulesDst.path, listPath: listDst.path)
         progressHandler?(1.0)
+    }
+
+    private func loadBundledFiles(progressHandler: ((Double) -> Void)?) throws {
+        guard let rulesFileURL, let listFileURL else {
+            throw KittenTTSError.phonemizerLoadFailed(
+                "Both rulesFileURL and listFileURL must be provided for bundled EPhonemizer data."
+            )
+        }
+
+        guard FileManager.default.fileExists(atPath: rulesFileURL.path) else {
+            throw KittenTTSError.phonemizerLoadFailed("Rules file not found: \(rulesFileURL.path)")
+        }
+        guard FileManager.default.fileExists(atPath: listFileURL.path) else {
+            throw KittenTTSError.phonemizerLoadFailed("List file not found: \(listFileURL.path)")
+        }
+
+        setCachedPaths(rulesPath: rulesFileURL.path, listPath: listFileURL.path)
+        progressHandler?(1.0)
+    }
+
+    private func setCachedPaths(rulesPath: String, listPath: String) {
+        lock.lock()
+        cachedRulesPath = rulesPath
+        cachedListPath = listPath
+        lock.unlock()
     }
 
     // MARK: - KittenPhonemizerProtocol

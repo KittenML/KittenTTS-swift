@@ -7,6 +7,11 @@ enum ModelDownloader {
 
     /// Returns `true` if both the ONNX model and voices file are present on disk.
     static func isModelCached(for config: KittenTTSConfig) -> Bool {
+        if let modelFiles = config.modelFiles {
+            return FileManager.default.fileExists(atPath: modelFiles.onnxURL.path) &&
+                   FileManager.default.fileExists(atPath: modelFiles.voicesURL.path)
+        }
+
         let dir = config.resolvedStorageDirectory
         return FileManager.default.fileExists(atPath: onnxURL(in: dir, model: config.model).path) &&
                FileManager.default.fileExists(atPath: voicesURL(in: dir, model: config.model).path)
@@ -27,6 +32,17 @@ enum ModelDownloader {
         for config: KittenTTSConfig,
         progressHandler: ((Double) -> Void)? = nil
     ) async throws -> (onnx: URL, voices: URL) {
+        if let modelFiles = config.modelFiles {
+            guard FileManager.default.fileExists(atPath: modelFiles.onnxURL.path) else {
+                throw KittenTTSError.modelFileNotFound(modelFiles.onnxURL)
+            }
+            guard FileManager.default.fileExists(atPath: modelFiles.voicesURL.path) else {
+                throw KittenTTSError.voicesFileNotFound(modelFiles.voicesURL)
+            }
+            progressHandler?(1.0)
+            return (modelFiles.onnxURL, modelFiles.voicesURL)
+        }
+
         let dir       = config.resolvedStorageDirectory
         let onnxDst   = onnxURL(in: dir, model: config.model)
         let voicesDst = voicesURL(in: dir, model: config.model)

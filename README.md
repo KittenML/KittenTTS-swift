@@ -10,7 +10,7 @@ try await tts.speak("Good morning!")
 
 ## Features
 
-- **Fully on-device** — no network calls after the one-time data & model download
+- **Fully on-device** — no network calls after setup
 - **4 model sizes** — nano (fp32/int8), micro, and mini
 - **8 voices** — Bella, Jasper, Luna, Bruno, Rosie, Hugo, Kiki, Leo
 - **Simple async API** — one line to generate or play speech
@@ -106,6 +106,7 @@ let config = KittenTTSConfig(
     defaultVoice: .luna,    // default voice
     speed: 1.1,             // global speed multiplier (0.5–2.0)
     storageDirectory: nil,  // nil = Application Support/KittenTTS/
+    modelFiles: nil,
     ortNumThreads: 4,       // ONNX intra-op thread count
     maxTokensPerChunk: 400  // max tokens per inference chunk
 )
@@ -227,6 +228,7 @@ The `Examples/` directory contains two complete SwiftUI apps:
 
 - **`KittenTTSiOSExample/`** — iOS 17+ app (iPhone / iPad)
 - **`KittenTTSmacOSExample/`** — macOS 14+ app (native Mac window)
+- **`KittenTTSmacOSBundledExample/`** — macOS bundled example
 
 To open an example, regenerate the Xcode project with [XcodeGen](https://github.com/yonaskolb/XcodeGen):
 
@@ -235,6 +237,9 @@ cd Examples/KittenTTSiOSExample
 xcodegen generate
 open KittenTTSiOSExample.xcodeproj
 ```
+
+For the bundled macOS example, see
+[`Examples/KittenTTSmacOSBundledExample/README.md`](Examples/KittenTTSmacOSBundledExample/README.md).
 
 ## Architecture
 

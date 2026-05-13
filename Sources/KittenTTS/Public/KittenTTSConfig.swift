@@ -40,6 +40,12 @@ public struct KittenTTSConfig: Sendable {
     /// `<Application Support>/KittenTTS/<model.rawValue>/`.
     public var storageDirectory: URL?
 
+    /// Local model files to use instead of downloading and caching model assets.
+    ///
+    /// When set, ``KittenTTS`` loads these files directly and skips model
+    /// downloads. This is intended for apps that bundle KittenTTS assets.
+    public var modelFiles: KittenTTSModelFiles?
+
     // MARK: - Phonemizer
 
     /// The G2P engine used to convert text to IPA phoneme sequences.
@@ -84,6 +90,7 @@ public struct KittenTTSConfig: Sendable {
         speed: Float = 1.0,
         phonemizer: KittenPhonemizerType = .builtin,
         storageDirectory: URL? = nil,
+        modelFiles: KittenTTSModelFiles? = nil,
         ortNumThreads: Int = 4,
         maxTokensPerChunk: Int = 400
     ) {
@@ -92,6 +99,7 @@ public struct KittenTTSConfig: Sendable {
         self.speed             = min(max(speed, 0.5), 2.0)
         self.phonemizer        = phonemizer
         self.storageDirectory  = storageDirectory
+        self.modelFiles        = modelFiles
         self.ortNumThreads     = max(1, ortNumThreads)
         self.maxTokensPerChunk = max(50, maxTokensPerChunk)
     }
